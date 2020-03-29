@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:3.6.2
+FROM rocker/tidyverse:3.6.1
 
 COPY conffiles.7z /
 
