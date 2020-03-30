@@ -1,11 +1,11 @@
 DOCKER_USER=mcooney
-PROJECT_USER=kaybenleroll
+PROJECT_USER=describedata
 PROJECT_NAME=r_baseimage
-PROJECT_TAG=3.6.1
+PROJECT_TAG=base-202003
 
 
 docker-build-image: Dockerfile
-	docker build -t ${PROJECT_USER}/${PROJECT_NAME}:work_${PROJECT_TAG} -f Dockerfile .
+	docker build -t ${PROJECT_USER}/${PROJECT_NAME}:${PROJECT_TAG} -f Dockerfile .
 
 docker-run:
 	docker run --rm -d \
