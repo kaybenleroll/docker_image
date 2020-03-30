@@ -25,6 +25,3 @@ RUN chmod ugo+r /conffiles.7z \
     brms \
     tidybayes \
     bayesplot
-
-
-
