@@ -12,14 +12,9 @@ RUN chmod ugo+r /conffiles.7z \
   && apt-get clean \
   && install2.r --error \
     conflicted \
-    tidyquant \
-    tidygraph \
     cowplot \
     snakecase \
     furrr \
-    forecast \
-    broom \
-    sweep \
     rstan \
     rstanarm \
     brms \
