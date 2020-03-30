@@ -9,6 +9,7 @@ RUN chmod ugo+r /conffiles.7z \
     libnlopt-dev \
   && apt-get clean \
   && install2.r --error \
+    conflicted \
     tidyquant \
     tidygraph \
     cowplot \
@@ -22,6 +23,4 @@ RUN chmod ugo+r /conffiles.7z \
     brms \
     tidybayes \
     bayesplot
-
-
 
