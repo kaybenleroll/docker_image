@@ -13,6 +13,7 @@ RUN chmod ugo+r /conffiles.7z \
     tidygraph \
     cowplot \
     snakecase \
+    furrr \
     forecast \
     broom \
     sweep \
