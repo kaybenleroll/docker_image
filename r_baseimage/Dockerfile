@@ -1,9 +1,6 @@
 FROM rocker/tidyverse:3.6.1
 
-COPY conffiles.7z /
-
-RUN chmod ugo+r /conffiles.7z \
-  && apt-get update \
+RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     libclang-dev \
     libnlopt-dev \
@@ -19,5 +16,12 @@ RUN chmod ugo+r /conffiles.7z \
     rstanarm \
     brms \
     tidybayes \
-    bayesplot
+    bayesplot \
+    tidyquant \
+    tidygraph \
+    tidytext \
+    forecast \
+    broom \
+    sweep
+
 
