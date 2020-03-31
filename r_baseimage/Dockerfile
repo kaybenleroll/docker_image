@@ -1,6 +1,9 @@
 FROM rocker/tidyverse:3.6.1
 
-RUN apt-get update \
+COPY conffiles.7z /
+
+RUN chmod ugo+r conffiles.7z \
+  && apt-get update \
   && apt-get install -y --no-install-recommends \
     libclang-dev \
     libnlopt-dev \
@@ -12,16 +15,7 @@ RUN apt-get update \
     cowplot \
     snakecase \
     furrr \
-    rstan \
-    rstanarm \
-    brms \
-    tidybayes \
-    bayesplot \
-    tidyquant \
-    tidygraph \
-    tidytext \
-    forecast \
+    fs \
     broom \
-    sweep
-
-
+    googleCloudStorageR \
+    rstan
