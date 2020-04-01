@@ -17,5 +17,4 @@ RUN chmod ugo+r conffiles.7z \
     furrr \
     fs \
     broom \
-    googleCloudStorageR \
-    rstan
+    googleCloudStorageR
