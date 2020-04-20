@@ -1,14 +1,14 @@
-DOCKER_USER=mcooney
-
-PROJECT_USER=kaybenleroll
+PROJECT_USER=describedata
 PROJECT_NAME=r_baseimage
-PROJECT_TAG=base202003
+PROJECT_TAG=base202004
 
 IMAGE_TAG=${PROJECT_USER}/${PROJECT_NAME}:${PROJECT_TAG}
 
+DOCKER_USER=mcooney
 
-docker-build-image: Dockerfile
-	docker build -t ${IMAGE_TAG} -f Dockerfile .
+
+docker-build-image: ${PROJECT_TAG}.Dockerfile
+	docker build -t ${IMAGE_TAG} -f ${PROJECT_TAG}.Dockerfile .
 
 docker-run:
 	docker run --rm -d \
@@ -23,8 +23,3 @@ docker-stop:
 docker-clean:
 	docker rm $(shell docker ps -q -a)
 
-docker-push:
-	docker push ${IMAGE_TAG}
-
-docker-pull:
-	docker pull ${IMAGE_TAG}
