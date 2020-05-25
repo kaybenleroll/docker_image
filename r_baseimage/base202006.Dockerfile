@@ -1,7 +1,9 @@
 FROM rocker/verse:4.0.0
 
 RUN apt-get update \
+  && apt-get upgrade -y \
   && apt-get install -y --no-install-recommends \
+    byobu \
     clang \
     clang-7 \
     less \
@@ -10,6 +12,7 @@ RUN apt-get update \
     p7zip-full \
     pbzip2 \
   && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* \
   && mkdir -p $HOME/.R \
   && echo "CXX=clang++" > $HOME/.R/Makevars \
   && echo "CXXFLAGS=-Os -mtune=native -march=native" >> $HOME/.R/Makevars \
@@ -27,8 +30,8 @@ RUN apt-get update \
   && echo "CXX14FLAGS+= -Wno-unknown-pragmas -Wno-macro-redefined" >> $HOME/.R/Makevars \
   && install2.r --error \
     bayesplot \
-    broom \
     brms \
+    broom \
     conflicted \
     cowplot \
     DataExplorer \
@@ -37,6 +40,7 @@ RUN apt-get update \
     googleCloudStorageR \
     rstan \
     rstanarm \
+    sessioninfo \
     snakecase \
     tidybayes \
     tidygraph \

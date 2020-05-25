@@ -27,3 +27,11 @@ docker-stop:
 docker-clean:
 	docker rm $(shell docker ps -q -a)
 
+docker-push:
+	docker push ${IMAGE_TAG}
+
+docker-pull:
+	docker pull ${IMAGE_TAG}
+
+
+
