@@ -1,10 +1,13 @@
-PROJECT_USER=describedata
+PROJECT_USER=kaybenleroll
 PROJECT_NAME=r_baseimage
-PROJECT_TAG=base202004
+PROJECT_TAG=base202006
+
+CONTAINER_NAME=kaybenleroll_baseimage
+
+DOCKER_USER=rstudio
+
 
 IMAGE_TAG=${PROJECT_USER}/${PROJECT_NAME}:${PROJECT_TAG}
-
-DOCKER_USER=mcooney
 
 
 docker-build-image: ${PROJECT_TAG}.Dockerfile
@@ -15,6 +18,7 @@ docker-run:
 	  -p 8787:8787 \
 	  -e USER=${DOCKER_USER} \
 	  -e PASSWORD=quickpass \
+		--name ${CONTAINER_NAME} \
 	  ${IMAGE_TAG}
 
 docker-stop:
