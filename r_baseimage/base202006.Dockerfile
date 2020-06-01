@@ -48,11 +48,24 @@ RUN apt-get update \
     tidytext
 
 
-COPY conffiles.7z /
+COPY build/conffiles.7z           /tmp
+COPY build/docker_install_rpkgs.R /tmp
+
+WORKDIR /tmp
+
+RUN git clone https://github.com/lindenb/makefile2graph.git \
+  && cd makefile2graph \
+  && make \
+  && make install
+
+RUN Rscript /tmp/docker_install_rpkgs.R
+
+
+
 
 WORKDIR /home/rstudio
 
-RUN 7z x /conffiles.7z \
+RUN 7z x /tmp/conffiles.7z \
   && cp conffiles/.bash*     . \
   && cp conffiles/.gitconfig . \
   && cp conffiles/.Renviron  . \
@@ -60,3 +73,5 @@ RUN 7z x /conffiles.7z \
   && cp conffiles/user-settings .rstudio/monitored/user-settings/ \
   && chown -R rstudio:rstudio /home/rstudio \
   && rm -rfv conffiles/
+
+
