@@ -1,18 +1,18 @@
-FROM rocker/verse:3.6.3
+FROM rocker/verse:4.0.0
 
-COPY conffiles.7z /
-
-RUN chmod ugo+r conffiles.7z \
-  && apt-get update \
+RUN apt-get update \
+  && apt-get upgrade -y \
   && apt-get install -y --no-install-recommends \
+    byobu \
+    clang \
+    clang-7 \
     less \
     libclang-dev \
     libnlopt-dev \
     p7zip-full \
     pbzip2 \
-    clang \
-    clang-7 \
   && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* \
   && mkdir -p $HOME/.R \
   && echo "CXX=clang++" > $HOME/.R/Makevars \
   && echo "CXXFLAGS=-Os -mtune=native -march=native" >> $HOME/.R/Makevars \
@@ -29,19 +29,49 @@ RUN chmod ugo+r conffiles.7z \
   && echo "CXX14FLAGS+= -Wno-unused-variable -Wno-unused-function" >> $HOME/.R/Makevars \
   && echo "CXX14FLAGS+= -Wno-unknown-pragmas -Wno-macro-redefined" >> $HOME/.R/Makevars \
   && install2.r --error \
+    bayesplot \
+    brms \
+    broom \
     conflicted \
     cowplot \
-    snakecase \
-    furrr \
+    DataExplorer \
     fs \
-    broom \
+    furrr \
+    googleCloudStorageR \
     rstan \
     rstanarm \
-    brms \
+    sessioninfo \
+    snakecase \
     tidybayes \
-    bayesplot \
     tidygraph \
-    tidytext \
     tidyquant \
-    googleCloudStorageR
+    tidytext
+
+
+COPY build/conffiles.7z           /tmp
+COPY build/docker_install_rpkgs.R /tmp
+
+WORKDIR /tmp
+
+RUN git clone https://github.com/lindenb/makefile2graph.git \
+  && cd makefile2graph \
+  && make \
+  && make install
+
+RUN Rscript /tmp/docker_install_rpkgs.R
+
+
+
+
+WORKDIR /home/rstudio
+
+RUN 7z x /tmp/conffiles.7z \
+  && cp conffiles/.bash*     . \
+  && cp conffiles/.gitconfig . \
+  && cp conffiles/.Renviron  . \
+  && cp conffiles/.Rprofile  . \
+  && cp conffiles/user-settings .rstudio/monitored/user-settings/ \
+  && chown -R rstudio:rstudio /home/rstudio \
+  && rm -rfv conffiles/
+
 

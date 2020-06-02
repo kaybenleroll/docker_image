@@ -1,4 +1,17 @@
-FROM rocker/verse:3.6.3
+FROM rocker/verse:4.0.0-ubuntu18.04
+
+COPY conffiles.7z /
+
+WORKDIR /home/rstudio
+
+RUN 7z x /conffiles.7z \
+  && cp conffiles/.bash*     . \
+  && cp conffiles/.gitconfig . \
+  && cp conffiles/.Renviron  . \
+  && cp conffiles/.Rprofile  . \
+  && cp conffiles/user-settings .rstudio/monitored/user-settings/ \
+  && chown -R rstudio:rstudio /home/rstudio \
+  && rm -rfv conffiles/
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -43,15 +56,3 @@ RUN apt-get update \
     tidytext
 
 
-COPY conffiles.7z /
-
-WORKDIR /home/rstudio
-
-RUN 7z x /conffiles.7z \
-  && cp conffiles/.bash*     . \
-  && cp conffiles/.gitconfig . \
-  && cp conffiles/.Renviron  . \
-  && cp conffiles/.Rprofile  . \
-  && cp conffiles/user-settings .rstudio/monitored/user-settings/ \
-  && chown -R rstudio:rstudio /home/rstudio \
-  && rm -rfv conffiles/
