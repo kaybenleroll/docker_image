@@ -15,3 +15,8 @@ remotes::install_github(
   ref = "3422dc45dac7dbd57a799690e38b91a9ebcdf87f",
   upgrade = "never"
 )
+
+
+library(cmdstanr)
+
+install_cmdstan()
