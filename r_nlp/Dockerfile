@@ -1,4 +1,4 @@
-FROM gcr.io/kompreno-core/dd-docker-rbaseimage:1fc65ba
+FROM kaybenleroll/r_baseimage:base202006
 
 RUN apt-get update \
   && apt-get upgrade -y \
