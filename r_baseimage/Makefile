@@ -33,5 +33,6 @@ docker-push:
 docker-pull:
 	docker pull ${IMAGE_TAG}
 
-
+docker-login:
+	cat ${HOME}/.dockerpass | docker login -u kaybenleroll --password-stdin
 
