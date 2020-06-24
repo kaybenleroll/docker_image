@@ -1,8 +1,8 @@
 PROJECT_USER=kaybenleroll
-PROJECT_NAME=r_baseimage
-PROJECT_TAG=base202006
+PROJECT_NAME=r_nlp
+PROJECT_TAG=nlp202006
 
-CONTAINER_NAME=kaybenleroll_baseimage
+CONTAINER_NAME=kaybenleroll_nlpimage
 
 DOCKER_USER=rstudio
 
