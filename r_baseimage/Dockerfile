@@ -5,24 +5,29 @@ RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     byobu \
     clang \
-    clang-7 \
+    clang-9 \
     less \
     libclang-dev \
+    libglpk-dev \
     libnlopt-dev \
     p7zip-full \
     pbzip2 \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* \
   && mkdir -p $HOME/.R \
-  && echo "CXX=clang++" > $HOME/.R/Makevars \
-  && echo "CXXFLAGS=-Os -mtune=native -march=native" >> $HOME/.R/Makevars \
-  && echo "CXXFLAGS+= -Wno-unused-variable -Wno-unused-function" >> $HOME/.R/Makevars \
-  && echo "CXXFLAGS+= -Wno-unknown-pragmas -Wno-macro-redefined" >> $HOME/.R/Makevars \
-  && echo "" \
-  && echo "CXX14=clang++" > $HOME/.R/Makevars \
-  && echo "CXX14FLAGS=-Os -mtune=native -march=native" >> $HOME/.R/Makevars \
+  && echo "" > $HOME/.R/Makevars \
+  && echo "CXX=clang++-9"                                          >> $HOME/.R/Makevars \
+  && echo "CXXFLAGS=-Os -mtune=native -march=native"               >> $HOME/.R/Makevars \
+  && echo "CXXFLAGS+= -Wno-unused-variable -Wno-unused-function"   >> $HOME/.R/Makevars \
+  && echo "CXXFLAGS+= -Wno-unknown-pragmas -Wno-macro-redefined"   >> $HOME/.R/Makevars \
+  && echo ""                                                       >> $HOME/.R/Makevars \
+  && echo "CXX14=clang++-9"                                        >> $HOME/.R/Makevars \
+  && echo "CXX14FLAGS=-Os -mtune=native -march=native"             >> $HOME/.R/Makevars \
   && echo "CXX14FLAGS+= -Wno-unused-variable -Wno-unused-function" >> $HOME/.R/Makevars \
   && echo "CXX14FLAGS+= -Wno-unknown-pragmas -Wno-macro-redefined" >> $HOME/.R/Makevars \
+  && echo ""                                                       >> $HOME/.R/Makevars \
+  && cp -r $HOME/.R /home/rstudio \
+  && chown rstudio:rstudio /home/rstudio/.R \
   && install2.r --error \
     bayesplot \
     brms \
@@ -30,17 +35,23 @@ RUN apt-get update \
     conflicted \
     cowplot \
     DataExplorer \
+    directlabels \
     fs \
     furrr \
     googleCloudStorageR \
+    loo \
+    projpred \
     rstan \
     rstanarm \
     sessioninfo \
+    shinybrms \
+    shinystan \
     snakecase \
     tidybayes \
     tidygraph \
     tidyquant \
-    tidytext
+    tidytext \
+    timetk
 
 
 COPY build/conffiles.7z           /tmp

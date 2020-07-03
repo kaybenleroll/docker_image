@@ -1,6 +1,12 @@
 remotes::install_github(
   "business-science/tidyquant",
-  ref = "f459f71f7d6f197618707409b04006bb8510d706",
+  ref = "017b7d9adda6d18deba5da0f42c31c8c55872f1c",
+  upgrade = "never"
+)
+
+remotes::install_github(
+  "business-science/modeltime",
+  ref = "cee4714e386a365c6574454d99ea202860d8e864",
   upgrade = "never"
 )
 
@@ -19,4 +25,14 @@ remotes::install_github(
 
 library(cmdstanr)
 
-install_cmdstan()
+cmdstan_flags <- list(
+  "CXX"        = "clang++-9",
+  "CXXFLAGS"   = "-Os -mtune=native -march=native  -Wno-unused-variable -Wno-unused-function  -Wno-unknown-pragmas -Wno-macro-redefined",
+  "CXX14"      = "clang++-9",
+  "CXX14FLAGS" = "-Os -mtune=native -march=native  -Wno-unused-variable -Wno-unused-function  -Wno-unknown-pragmas -Wno-macro-redefined"
+)
+
+install_cmdstan(cores = parallel::detectCores(),
+                flags = cmdstan_flags
+                )
+
