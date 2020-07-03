@@ -1,8 +1,10 @@
-FROM kaybenleroll/r_baseimage:base202006
+FROM rocker/verse:4.0.0
 
 RUN apt-get update \
   && apt-get upgrade -y \
   && apt-get install -y --no-install-recommends \
+    byobu \
+    less \
     libgsl-dev \
     python3-pip \
   && apt-get clean \
@@ -14,10 +16,30 @@ RUN apt-get update \
   && ln -s /usr/bin/python3 /usr/bin/python \
   && install2.r --error \
     cleanNLP \
+    kernlab \
+    broom \
+    conflicted \
+    cowplot \
+    DataExplorer \
+    directlabels \
+    fs \
+    furrr \
+    googleCloudStorageR \
     lda \
+    lsa \
     openNLP \
+    politeness \
     qdap \
     quanteda \
+    spacyr \
+    sessioninfo \
+    snakecase \
+    text2vec \
+    textplot \
+    tidygraph \
+    tidyquant \
+    tidytext \
+    tm \
     topicmodels \
     udpipe \
     wordcloud
