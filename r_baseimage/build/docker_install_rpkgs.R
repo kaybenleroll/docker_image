@@ -11,14 +11,14 @@ remotes::install_github(
 )
 
 remotes::install_github(
-  "jgabry/posterior",
-  ref = "ecd99b1d6806fc02dce425207236e8f7d6f75939",
+  "stan-dev/posterior",
+  ref = "4794130b548511c9861fc0085ba5a677afeba6fe",
   upgrade = "never"
 )
 
 remotes::install_github(
   "stan-dev/cmdstanr",
-  ref = "3422dc45dac7dbd57a799690e38b91a9ebcdf87f",
+  ref = "fc37abd8dd9950181201e08fbaff1549d982a17f",
   upgrade = "never"
 )
 
@@ -32,7 +32,8 @@ cmdstan_flags <- list(
   "CXX14FLAGS" = "-Os -mtune=native -march=native  -Wno-unused-variable -Wno-unused-function  -Wno-unknown-pragmas -Wno-macro-redefined"
 )
 
-install_cmdstan(cores = parallel::detectCores(),
-                flags = cmdstan_flags
-                )
+install_cmdstan(
+  cores       = parallel::detectCores(),
+  cpp_options = cmdstan_flags
+)
 

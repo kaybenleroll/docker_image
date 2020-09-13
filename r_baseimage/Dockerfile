@@ -1,4 +1,4 @@
-FROM rocker/verse:4.0.0
+FROM rocker/verse:4.0.1
 
 RUN apt-get update \
   && apt-get upgrade -y \
@@ -6,6 +6,7 @@ RUN apt-get update \
     byobu \
     clang \
     clang-9 \
+    ditaa \
     less \
     libclang-dev \
     libglpk-dev \
@@ -32,15 +33,19 @@ RUN apt-get update \
     bayesplot \
     brms \
     broom \
+    broom.mixed \
+    broomExtra \
     conflicted \
     cowplot \
     DataExplorer \
     directlabels \
+    drake \
     fs \
     furrr \
     googleCloudStorageR \
     loo \
     projpred \
+    prophet \
     rstan \
     rstanarm \
     sessioninfo \
