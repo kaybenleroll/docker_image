@@ -1,4 +1,4 @@
-FROM rocker/verse:4.0.0
+FROM rocker/verse:4.0.2
 
 RUN apt-get update \
   && apt-get upgrade -y \
@@ -6,7 +6,11 @@ RUN apt-get update \
     byobu \
     less \
     libgsl-dev \
+    libleptonica-dev \
+    libpoppler-cpp-dev \
+    libtesseract-dev \
     python3-pip \
+    tesseract-ocr-eng \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* \
   && pip3 install \
@@ -27,6 +31,9 @@ RUN apt-get update \
     googleCloudStorageR \
     lda \
     lsa \
+    ngram \
+    ngramrr \
+    NLP \
     openNLP \
     politeness \
     qdap \
@@ -34,6 +41,7 @@ RUN apt-get update \
     spacyr \
     sessioninfo \
     snakecase \
+    tesseract \
     text2vec \
     textplot \
     tidygraph \
@@ -42,7 +50,8 @@ RUN apt-get update \
     tm \
     topicmodels \
     udpipe \
-    wordcloud
+    wordcloud \
+    zipfR
 
 
 COPY build/install_pkgs_setup_nlp.R /tmp/
