@@ -1,11 +1,14 @@
 PROJECT_USER=kaybenleroll
 PROJECT_NAME=r_nlp
-PROJECT_TAG=nlp202006
+PROJECT_TAG=nlp202009
 
-CONTAINER_NAME=kaybenleroll_nlpimage
+CONTAINER_NAME=kaybenleroll_nlp
 
 DOCKER_USER=rstudio
+DOCKER_UID=$(shell id -u)
+DOCKER_GID=$(shell id -g)
 
+RSTUDIO_PORT=8787
 
 IMAGE_TAG=${PROJECT_USER}/${PROJECT_NAME}:${PROJECT_TAG}
 
@@ -15,10 +18,12 @@ docker-build-image: Dockerfile
 
 docker-run:
 	docker run --rm -d \
-	  -p 8787:8787 \
+	  -p ${RSTUDIO_PORT}:8787 \
 	  -e USER=${DOCKER_USER} \
 	  -e PASSWORD=quickpass \
-		--name ${CONTAINER_NAME} \
+	  -e USERID=${DOCKER_UID} \
+	  -e GROUPID=${DOCKER_GID} \
+	  --name ${CONTAINER_NAME} \
 	  ${IMAGE_TAG}
 
 docker-stop:
@@ -35,5 +40,4 @@ docker-pull:
 
 docker-login:
 	cat ${HOME}/.dockerpass | docker login -u kaybenleroll --password-stdin
-
 
