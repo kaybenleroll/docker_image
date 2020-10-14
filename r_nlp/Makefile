@@ -1,6 +1,6 @@
 PROJECT_USER=kaybenleroll
 PROJECT_NAME=r_nlp
-PROJECT_TAG=nlp202009
+PROJECT_TAG=nlp202010
 
 CONTAINER_NAME=kaybenleroll_nlp
 
