@@ -1,4 +1,4 @@
-FROM rocker/verse:4.0.1
+FROM rocker/verse:4.0.2
 
 RUN apt-get update \
   && apt-get upgrade -y \
@@ -44,6 +44,7 @@ RUN apt-get update \
     furrr \
     googleCloudStorageR \
     loo \
+    modeltime \
     projpred \
     prophet \
     rstan \
