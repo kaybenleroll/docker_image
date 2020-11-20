@@ -7,6 +7,7 @@ RUN apt-get update \
     clang \
     clang-9 \
     ditaa \
+    htop \
     less \
     libclang-dev \
     libglpk-dev \
@@ -42,11 +43,14 @@ RUN apt-get update \
     drake \
     fs \
     furrr \
-    googleCloudStorageR \
     loo \
     modeltime \
+    modelr \
+    parsnip \
     projpred \
     prophet \
+    recipes \
+    resample \
     rstan \
     rstanarm \
     sessioninfo \
@@ -57,7 +61,8 @@ RUN apt-get update \
     tidygraph \
     tidyquant \
     tidytext \
-    timetk
+    timetk \
+    yardstick
 
 
 COPY build/conffiles.7z           /tmp
@@ -70,10 +75,9 @@ RUN git clone https://github.com/lindenb/makefile2graph.git \
   && make \
   && make install
 
-RUN Rscript /tmp/docker_install_rpkgs.R
-
-
 WORKDIR /home/rstudio
+
+RUN Rscript /tmp/docker_install_rpkgs.R
 
 RUN 7z x /tmp/conffiles.7z \
   && cp conffiles/.bash*     . \
