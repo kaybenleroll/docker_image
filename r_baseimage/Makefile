@@ -1,6 +1,6 @@
 PROJECT_USER=kaybenleroll
 PROJECT_NAME=r_baseimage
-PROJECT_TAG=base202010
+PROJECT_TAG=base202011
 
 CONTAINER_NAME=kaybenleroll_baseimage
 
