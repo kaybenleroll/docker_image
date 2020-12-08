@@ -45,12 +45,9 @@ RUN apt-get update \
     furrr \
     loo \
     modeltime \
-    modelr \
-    parsnip \
     projpred \
     prophet \
-    recipes \
-    resample \
+    rmdformats \
     rstan \
     rstanarm \
     sessioninfo \
@@ -59,10 +56,10 @@ RUN apt-get update \
     snakecase \
     tidybayes \
     tidygraph \
+    tidymodels \
     tidyquant \
     tidytext \
-    timetk \
-    yardstick
+    timetk
 
 
 COPY build/conffiles.7z           /tmp
