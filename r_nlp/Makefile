@@ -1,10 +1,11 @@
 PROJECT_USER=kaybenleroll
 PROJECT_NAME=r_nlp
-PROJECT_TAG=nlp202010
+PROJECT_TAG=nlp202102
 
 CONTAINER_NAME=kaybenleroll_nlp
 
 DOCKER_USER=rstudio
+DOCKER_PASS=nlpcont
 DOCKER_UID=$(shell id -u)
 DOCKER_GID=$(shell id -g)
 
@@ -20,7 +21,7 @@ docker-run:
 	docker run --rm -d \
 	  -p ${RSTUDIO_PORT}:8787 \
 	  -e USER=${DOCKER_USER} \
-	  -e PASSWORD=quickpass \
+	  -e PASSWORD=${DOCKER_PASS} \
 	  -e USERID=${DOCKER_UID} \
 	  -e GROUPID=${DOCKER_GID} \
 	  --name ${CONTAINER_NAME} \

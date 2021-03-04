@@ -1,4 +1,4 @@
-FROM rocker/verse:4.0.2
+FROM rocker/verse:4.0.3
 
 RUN apt-get update \
   && apt-get upgrade -y \
@@ -36,6 +36,7 @@ RUN apt-get update \
     NLP \
     openNLP \
     politeness \
+    pryr \
     qdap \
     quanteda \
     spacyr \
@@ -55,6 +56,8 @@ RUN apt-get update \
 
 
 COPY build/install_pkgs_setup_nlp.R /tmp/
+
+WORKDIR /home/rstudio
 
 RUN Rscript /tmp/install_pkgs_setup_nlp.R
 
