@@ -12,6 +12,6 @@ install.packages("openNLPmodels.en",
 
 library(cleanNLP)
 
-cnlp_download_spacy()
-cnlp_download_corenlp()
-cnlp_init_udpipe()
+cnlp_download_spacy(model_name = "en_core_web_sm")
+cnlp_download_corenlp(lang = "en")
+cnlp_init_udpipe(model_name = "english")
