@@ -1,18 +1,12 @@
 remotes::install_github(
-  "business-science/tidyquant",
-  ref = "f476e53d68735bf8ee460f0afd8ebc81c55a90c4",
-  upgrade = "never"
-)
-
-remotes::install_github(
   "stan-dev/posterior",
-  ref = "743814747fc42bb12641447a369ff0967c0cc51f",
+  ref = "7d3b89571feb6e540df555ad7dc5edfa83430a7d",
   upgrade = "never"
 )
 
 remotes::install_github(
   "stan-dev/cmdstanr",
-  ref = "fb3703f5d5b4f2238ead2471e102f7232d0da316",
+  ref = "46ae80f12881356e9152edd3881457b6da40016f",
   upgrade = "never"
 )
 
