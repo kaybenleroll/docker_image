@@ -1,12 +1,12 @@
 remotes::install_github(
   "stan-dev/posterior",
-  ref = "7d3b89571feb6e540df555ad7dc5edfa83430a7d",
+  ref = "02aaef5806f484e4e3b13aa1ff95124d590a097a",
   upgrade = "never"
 )
 
 remotes::install_github(
   "stan-dev/cmdstanr",
-  ref = "46ae80f12881356e9152edd3881457b6da40016f",
+  ref = "3233585c8e0047d88c85ba8eb9072057ff5237a5",
   upgrade = "never"
 )
 

@@ -1,4 +1,4 @@
-FROM rocker/verse:4.0.3
+FROM rocker/verse:4.0.4
 
 RUN apt-get update \
   && apt-get upgrade -y \
@@ -55,6 +55,7 @@ RUN apt-get update \
     shinybrms \
     shinystan \
     snakecase \
+    tictoc \
     tidybayes \
     tidygraph \
     tidymodels \
