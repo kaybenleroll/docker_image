@@ -7,6 +7,7 @@ RUN apt-get update \
     clang \
     clang-9 \
     ditaa \
+    graphviz \
     htop \
     less \
     libclang-dev \
