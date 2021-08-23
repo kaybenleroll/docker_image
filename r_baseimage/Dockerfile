@@ -1,4 +1,4 @@
-FROM rocker/verse:4.0.4
+FROM rocker/verse:4.1.0
 
 RUN apt-get update \
   && apt-get upgrade -y \
@@ -32,6 +32,7 @@ RUN apt-get update \
   && cp -r $HOME/.R /home/rstudio \
   && chown rstudio:rstudio /home/rstudio/.R \
   && install2.r --error \
+    anytime \
     bayesplot \
     brms \
     broom \
@@ -41,11 +42,11 @@ RUN apt-get update \
     cowplot \
     DataExplorer \
     directlabels \
-    drake \
     fs \
     furrr \
     loo \
     modeltime \
+    posterior \
     projpred \
     prophet \
     pryr \
@@ -79,13 +80,14 @@ WORKDIR /home/rstudio
 
 RUN Rscript /tmp/docker_install_rpkgs.R
 
-RUN 7z x /tmp/conffiles.7z \
+RUN 7z x /tmp/conffiles.7z     \
   && cp conffiles/.bash*     . \
   && cp conffiles/.gitconfig . \
   && cp conffiles/.Renviron  . \
   && cp conffiles/.Rprofile  . \
-  && cp conffiles/user-settings .rstudio/monitored/user-settings/ \
-  && chown -R rstudio:rstudio /home/rstudio \
+  && mkdir -p .config/rstudio  \
+  && cp conffiles/rstudio-prefs.json .config/rstudio/ \
+  && chown -R rstudio:rstudio /home/rstudio           \
   && rm -rfv conffiles/
 
 
