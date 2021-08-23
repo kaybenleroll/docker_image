@@ -1,10 +1,11 @@
 PROJECT_USER=kaybenleroll
 PROJECT_NAME=r_baseimage
-PROJECT_TAG=base202104
+PROJECT_TAG=base202108
 
 CONTAINER_NAME=kaybenleroll_baseimage
 
 DOCKER_USER=rstudio
+DOCKER_PASS=password
 DOCKER_UID=$(shell id -u)
 DOCKER_GID=$(shell id -g)
 
@@ -20,13 +21,19 @@ docker-run:
 	docker run --rm -d \
 	  -p ${RSTUDIO_PORT}:8787 \
 	  -e USER=${DOCKER_USER} \
-	  -e PASSWORD=quickpass \
+	  -e PASSWORD=${DOCKER_PASS} \
 	  -e USERID=${DOCKER_UID} \
 	  -e GROUPID=${DOCKER_GID} \
 	  --name ${CONTAINER_NAME} \
 	  ${IMAGE_TAG}
 
+docker-bash:
+	docker exec -it -u ${DOCKER_USER} ${CONTAINER_NAME} bash
+
 docker-stop:
+	docker stop ${CONTAINER_NAME}
+
+docker-stop-all:
 	docker stop $(shell docker ps -q -a)
 
 docker-clean:
