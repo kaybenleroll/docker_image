@@ -1,5 +1,7 @@
 FROM rocker/verse:4.1.1
 
+ENV RETICULATE_MINICONDA_ENABLED=FALSE
+
 RUN apt-get update \
   && apt-get upgrade -y \
   && apt-get install -y --no-install-recommends \
