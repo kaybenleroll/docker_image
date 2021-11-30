@@ -1,7 +1,7 @@
 library(reticulate)
 library(cleanNLP)
 
-use_python("/usr/local/bin/python")
+use_python("/usr/bin/python3")
 
 ### Initialise the NLP packages that require it
 cnlp_download_spacy(model_name = "en_core_web_sm")
