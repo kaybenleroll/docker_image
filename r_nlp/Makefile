@@ -1,11 +1,11 @@
 PROJECT_USER=kaybenleroll
 PROJECT_NAME=r_nlp
-PROJECT_TAG=nlp202104
+PROJECT_TAG=nlp202111
 
 CONTAINER_NAME=kaybenleroll_nlp
 
 DOCKER_USER=rstudio
-DOCKER_PASS=nlpcont
+DOCKER_PASS=password
 DOCKER_UID=$(shell id -u)
 DOCKER_GID=$(shell id -g)
 
@@ -27,10 +27,16 @@ docker-run:
 	  --name ${CONTAINER_NAME} \
 	  ${IMAGE_TAG}
 
+docker-bash:
+	docker exec -it -u ${DOCKER_USER} ${CONTAINER_NAME} bash
+
 docker-stop:
+	docker stop ${CONTAINER_NAME}
+
+docker-stop-all:
 	docker stop $(shell docker ps -q -a)
 
-docker-clean:
+docker-clean-all:
 	docker rm $(shell docker ps -q -a)
 
 docker-push:
