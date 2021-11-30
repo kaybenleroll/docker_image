@@ -1,4 +1,4 @@
-FROM rocker/verse:4.1.0
+FROM rocker/verse:4.1.1
 
 RUN apt-get update \
   && apt-get upgrade -y \
@@ -19,12 +19,12 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/* \
   && mkdir -p $HOME/.R \
   && echo "" > $HOME/.R/Makevars \
-  && echo "CXX=clang++-9"                                          >> $HOME/.R/Makevars \
+  && echo "CXX=clang++"                                            >> $HOME/.R/Makevars \
   && echo "CXXFLAGS=-Os -mtune=native -march=native"               >> $HOME/.R/Makevars \
   && echo "CXXFLAGS+= -Wno-unused-variable -Wno-unused-function"   >> $HOME/.R/Makevars \
   && echo "CXXFLAGS+= -Wno-unknown-pragmas -Wno-macro-redefined"   >> $HOME/.R/Makevars \
   && echo ""                                                       >> $HOME/.R/Makevars \
-  && echo "CXX14=clang++-9"                                        >> $HOME/.R/Makevars \
+  && echo "CXX14=clang++"                                          >> $HOME/.R/Makevars \
   && echo "CXX14FLAGS=-Os -mtune=native -march=native"             >> $HOME/.R/Makevars \
   && echo "CXX14FLAGS+= -Wno-unused-variable -Wno-unused-function" >> $HOME/.R/Makevars \
   && echo "CXX14FLAGS+= -Wno-unknown-pragmas -Wno-macro-redefined" >> $HOME/.R/Makevars \
@@ -77,6 +77,7 @@ RUN git clone https://github.com/lindenb/makefile2graph.git \
   && make install
 
 WORKDIR /home/rstudio
+USER rstudio
 
 RUN Rscript /tmp/docker_install_rpkgs.R
 
@@ -87,7 +88,8 @@ RUN 7z x /tmp/conffiles.7z     \
   && cp conffiles/.Rprofile  . \
   && mkdir -p .config/rstudio  \
   && cp conffiles/rstudio-prefs.json .config/rstudio/ \
-  && chown -R rstudio:rstudio /home/rstudio           \
   && rm -rfv conffiles/
 
 
+USER root
+RUN chown -R rstudio:rstudio /home/rstudio
